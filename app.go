@@ -11,7 +11,7 @@ import (
 //go:embed templates/*
 var resources embed.FS
 
-// Parse templates
+// Parse templatesd
 var t = template.Must(template.ParseFS(resources, "templates/*"))
 
 func main() {
