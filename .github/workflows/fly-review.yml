@@ -32,3 +32,7 @@ jobs:
       - name: Deploy PR app to Fly.io
         id: deploy
         uses: superfly/fly-pr-review-apps@1.2.1
+        with:
+          # Fly app names must be lowercase letters, numbers, and dashes.
+          # The action also requires the PR number to be included.
+          name: pr-${{ github.event.number }}-go-example
