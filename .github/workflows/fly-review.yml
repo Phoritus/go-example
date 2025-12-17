@@ -13,8 +13,6 @@ env:
 jobs:
   review_app:
     # Repo secrets (like FLY_API_TOKEN) are not provided to workflows triggered from forks.
-    # Skip deploying review apps for forked PRs to avoid confusing auth errors.
-    if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
     runs-on: ubuntu-latest
     outputs:
       url: ${{ steps.deploy.outputs.url }}
@@ -32,8 +30,6 @@ jobs:
       - name: Get code
         uses: actions/checkout@v4
 
-      - name: Validate Fly.io token present
-        run: test -n "$FLY_API_TOKEN"
 
       - name: Deploy PR app to Fly.io
         id: deploy
